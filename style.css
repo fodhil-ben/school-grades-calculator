@@ -81,6 +81,7 @@ input{
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+    width:max-content;
 }
 #feedback{
     width: fit-content;
