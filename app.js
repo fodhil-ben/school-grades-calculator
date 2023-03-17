@@ -27,7 +27,7 @@ submit.addEventListener("click", ()=>{
         sum_td += parseInt(td[i].value) * parseInt(coef[i].value)
     }
 
-    if ((!isNaN(sum_coef)) && (!isNaN(sum_emd1)) && (!isNaN(sum_emd2)) && (!isNaN(sum_td)) ){
+    // if ((!isNaN(sum_coef)) && (!isNaN(sum_emd1)) && (!isNaN(sum_emd2)) && (!isNaN(sum_td)) ){
         coef_res.value = sum_coef
         emd1_res.value = (sum_emd1 / sum_coef).toFixed(2)
         emd2_res.value = (sum_emd2 / sum_coef).toFixed(2)
@@ -36,17 +36,18 @@ submit.addEventListener("click", ()=>{
         moy_sum = calc_moy_sum(moy, coef)
         moy_res.value = (moy_sum / sum_coef).toFixed(2)
         average.innerHTML = moy_res.value
+    // }
+    // else{
+        // for (let j = 0; j < mod.length ; j++){
+        //     moy[j].value = 0
+        // }
+        // coef_res.value = 0
+        // emd1_res.value = 0
+        // emd2_res.value = 0 
+        // td_res.value = 0
     }
-    else{
-        for (let j = 0; j < mod.length ; j++){
-            moy[j].value = 0
-        }
-        coef_res.value = 0
-        emd1_res.value = 0
-        emd2_res.value = 0 
-        td_res.value = 0
-    }
-})
+// }
+)
 
 const update_moy = ()=>{
     for (let j = 0; j < mod.length; j++){
@@ -57,13 +58,17 @@ const update_moy = ()=>{
 
 
 function calc_moy(mod, emd1, emd2, td){
-    let mod50 = ["Archi", "Systeme", "Algo"]
-    let mod33 = ["Analyse", "Algebre", "Elec", "Francais", "BW"]
-    if (mod50.includes(mod)){
+    let archi = ["Archi"]
+    let systeme = ["Systeme"]
+    let mod33 = ["Analyse", "Algebre", "Elec", "Francais", "BW", "Algo"]
+    if (systeme.includes(mod)){
         return (emd1 * .25 + emd2 * .25 + td * .5).toFixed(2)
     }
     else if (mod33.includes(mod)){
         return (((emd1 + emd2 + td) / 3).toFixed(2)) 
+    }
+    else if (archi.includes(mod)){
+        return (emd1 * .2 + emd2 *.3 + td *.5)
     }
 }
 function calc_moy_sum(m, c){
